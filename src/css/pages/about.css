@@ -1,0 +1,44 @@
+/* Add this to your CSS file */
+.card {
+  perspective: 1000px;
+}
+
+.card-inner {
+  transition: transform 0.6s ease-in-out;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card:hover {
+  cursor: pointer;
+}
+
+.card-front,
+.card-back {
+  backface-visibility: hidden;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+}
+
+/* MemberCard2.css */
+
+/* Define keyframes for opacity animation */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.7; /* Adjust opacity value as needed */
+  }
+}

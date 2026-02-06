@@ -1,0 +1,15 @@
+/* LetterAnimation.css */
+.animate-letter {
+  display: inline-block;
+  animation: scaleLetter 1s ease-in-out infinite;
+}
+
+@keyframes scaleLetter {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}

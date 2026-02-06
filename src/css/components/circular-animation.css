@@ -1,0 +1,75 @@
+.container {
+  position: relative;
+}
+
+.moving-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: circular-motion 60s linear infinite;
+}
+
+/* Define keyframes for circular motion */
+@keyframes circular-motion {
+  0% {
+    transform: translate(-50%, -50%) rotate(360deg) translateX(180px) 
+      rotate(-360deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(0deg) translateX(180px) 
+      rotate(0deg);
+  }
+}
+
+@keyframes rotate-360 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.rotate-slow {
+  animation: rotate-360 20s linear infinite;
+}
+
+/* Media Query for Mobile View */
+@media (max-width: 768px) {
+  /* Adjust circular motion for smaller radius */
+  @keyframes circular-motion {
+    0% {
+      transform: translate(-50%, -50%) rotate(360deg) translateX(120px)  rotate(-360deg);
+      ; /* Reduced radius */
+    }
+    100% {
+      transform: translate(-50%, -50%) rotate(0deg) translateX(120px)  rotate(0deg);
+      ; /* Reduced radius */
+    }
+  }
+
+  /* Make the boxes and text smaller for mobile */
+  .moving-text {
+    position:absolute;
+    top:25%;
+    left:50%;
+    width: 100px; /* Smaller width */
+    height: 50px;  /* Smaller height */
+    font-size: 0.8rem; /* Smaller text size */
+    
+  }
+  .center-label{
+    position:relative;
+    font-size: 1.5rem; /* Smaller text size */
+
+    top:-20%;
+
+  }
+  /* Adjust rotating arrow */
+  .rotate-slow {
+    width: 200px; /* Smaller rotating arrow for mobile */
+    height: 200px;
+    
+  }
+}
