@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import "./header.css";
-import LanguageToogle from "./LanguageToogle";
+import LanguageToogle from "./LanguageToggle";
 
 import logo from "../../assets/images/common/heroics-logo-rgb.png";
 import menuIcon from "../../assets/images/common/menuicon.png";
