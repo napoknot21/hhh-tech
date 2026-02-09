@@ -1,9 +1,55 @@
 {
     "header": {
+        
         "about": "A propos",
         "services": "Services",
         "news": "Actus",
-        "contact": "Contacte"
+        "contact": "Contact"
+    
+    },
+
+    "footer": {
+
+        "contact": "Contact",
+        "privacy": "Polituque de privacidad",
+        "terms": "Termes y Conditions",
+        "copyright": "© Heroics Capital Partners. All rights reserved."
+        
+    },
+
+    "pages": {
+    
+        "home": {
+            "title": "Home",
+            "desc": "Homepage (placeholder)."
+        },
+
+        "about": {
+            "title": "A propos",
+            "desc": "About page (placeholder)."
+        },
+
+        "services": {
+            "title": "Services",
+            "desc": "Services page (placeholder)."
+        },
+
+        "news": {
+            "title": "Actus",
+            "desc": "Actus page (placeholder)."
+        },
+
+        "contact": {
+            "title": "Contact",
+            "desc": "Contact page (placeholder)."
+        },
+
+        "notFound": {
+            "title": "404",
+            "desc": "Page not found.",
+            "back": "Back to home"
+        }
     }
 
 }
+
