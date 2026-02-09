@@ -1,36 +1,55 @@
-import { useTranslation } from "react-i18next";
+import i18n from "i18next";
+import { useEffect, useState } from "react";
+import "./header.css"; // optionnel : si tu veux styliser via header.css
 
-const LANGS = [
+type Lang = "en" | "fr" | "es";
 
-  { code: "en", label: "EN" },
-  { code: "fr", label: "FR" },
-  { code: "es", label: "ES" },
+const LANGS : { code: Lang; label: string }[] = [
+    { code: "en", label: "EN" },
+    { code: "fr", label: "FR" },
+    { code: "es", label: "ES" },
+];
 
-] as const;
+const STORAGE_KEY = "heroics_lang";
 
-export default function LanguageToggle() {
-  const { i18n } = useTranslation();
+export default function LanguageToogle() {
+    
+    const [current, setCurrent] = useState<Lang>(
+        (i18n.language?.slice(0, 2) as Lang) || "en"
+    );
 
-  const setLang = async (lang: string) => {
-    await i18n.changeLanguage(lang);
-    localStorage.setItem("lang", lang);
-  };
+    // Au montage : récupère la langue sauvegardée (si tu veux la persistance)
+    useEffect(() => {
+        const saved = localStorage.getItem(STORAGE_KEY) as Lang | null;
+        if (saved && saved !== current) {
+        i18n.changeLanguage(saved);
+        setCurrent(saved);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
-  return (
-    <div className="lang-toggle" role="group" aria-label="Language">
-      {LANGS.map((l) => {
-        const active = i18n.language?.startsWith(l.code);
-        return (
-          <button
-            key={l.code}
-            type="button"
-            className={`lang-btn ${active ? "is-active" : ""}`}
-            onClick={() => setLang(l.code)}
-          >
-            {l.label}
-          </button>
-        );
-      })}
-    </div>
-  );
+    const changeLang = async (lang: Lang) => {
+        await i18n.changeLanguage(lang);
+        setCurrent(lang);
+        localStorage.setItem(STORAGE_KEY, lang);
+    };
+
+    return (
+        <div className="language-toggle" role="group" aria-label="Language switch">
+            {LANGS.map((l) => (
+                <button
+                    key={l.code}
+                    type="button"
+                    onClick={() => changeLang(l.code)}
+                    className={`language-toggle__btn ${
+                        current === l.code ? "is-active" : ""
+                    }`}
+                    aria-pressed={current === l.code}
+                    >
+                    {l.label}
+                </button>
+            ))}
+        </div>
+    );
+    
 }

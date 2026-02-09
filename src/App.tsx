@@ -1,3 +1,21 @@
+import { Outlet } from "react-router-dom";
+import Header from "./components/header/Header";
+
+export default function App() {
+    return (
+        <>
+        <Header />
+            {/* petit padding top pour ne pas passer sous le header fixed */}
+            <div style={{ paddingTop: 80 }}>
+                <Outlet />
+            </div>
+        </>
+    );
+}
+
+
+
+/**
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
@@ -33,3 +51,4 @@ function App() {
 }
 
 export default App
+*/

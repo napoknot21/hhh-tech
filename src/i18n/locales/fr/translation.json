@@ -1,9 +1,9 @@
 {
     "header": {
-        "about": "About",
+        "about": "A propos",
         "services": "Services",
-        "news": "News",
-        "contact": "Contact"
+        "news": "Actus",
+        "contact": "Contacte"
     }
 
 }

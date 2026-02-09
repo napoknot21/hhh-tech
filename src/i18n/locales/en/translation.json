@@ -1,9 +1,19 @@
 {
     "header": {
-        "about": "About",
-        "services": "Services",
-        "news": "News",
-        "contact": "Contact"
+        
+        "about": "Acerca de",
+        "services": "Servicios",
+        "news": "Noticias",
+        "contact": "Contacto"
+    
+    },
+
+    "footer": {
+
+        "contact": "Contacto",
+        "privacy": "Política de privacidad",
+        "terms": "Términos y condiciones"
+        
     }
 
 }

@@ -1,92 +1,126 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-
-import Nav, { type NavItem } from "./Nav";
-import LanguageToggle from "./LanguageToggle";
-import UserMenu from "./UserMenu";
-
-import logo from "../../assets/images/common/heroics-logo-rgb.png";
-//import menuIcon from "../../assets/images/common/user.png"; // ⚠️ replace with your real menu icon if you have it
-import burgerIcon from "../../assets/images/common/user.png"; // ⚠️ replace with menuicon.png
+import { useTranslation } from "react-i18next";
 
 import "./header.css";
+import LanguageToogle from "./LanguageToogle";
+
+import logo from "../../assets/images/common/heroics-logo-rgb.png";
+import menuIcon from "../../assets/images/common/menuicon.png";
+import userIcon from "../../assets/images/common/user.png";
+
+type NavItem = { label: string; to: string };
 
 export default function Header() {
-const location = useLocation();
-const [smallLayout, setSmallLayout] = useState<boolean>(window.innerWidth < 1100);
-const [menuOpen, setMenuOpen] = useState<boolean>(false);
 
-// Define nav items here (cleaner than passing "categories" everywhere)
-const items: NavItem[] = useMemo(
+    const { t } = useTranslation();
+    const location = useLocation();
 
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 1100);
+    const [menuOpen, setMenuOpen] = useState(false);
+
+    const navItems: NavItem[] = useMemo(
         () => [
-        { key: "about", to: "/about" },
-        { key: "services", to: "/services" },
-        { key: "news", to: "/news" },
-        { key: "contact", to: "/contact" },
+            { label: t("header.about"), to: "/about" },
+            { label: t("header.services"), to: "/services" },
+            { label: t("header.news"), to: "/news" },
+            { label: t("header.contact"), to: "/contact" },
         ],
-        []
+        [t]
     );
 
     useEffect(() => {
-        const handleResize = () => setSmallLayout(window.innerWidth < 1100);
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
+        const onResize = () => setIsMobile(window.innerWidth < 1100);
+        window.addEventListener("resize", onResize);
+        return () => window.removeEventListener("resize", onResize);
     }, []);
 
-    // Close menu when route changes (nice UX)
     useEffect(() => {
         setMenuOpen(false);
     }, [location.pathname]);
 
-    const toggleMenu = () => setMenuOpen((v) => !v);
+    const isActive = (to: string) => location.pathname === to;
 
     return (
         <header className="header">
         <div className="header-inner">
-            {/* Logo (Home) */}
+            {/* LEFT: logo */}
             <div className="header-left">
-            <Link to="/" className="header-logo-link" aria-label="Home">
+            <Link to="/">
                 <img className="header-logo" src={logo} alt="Heroics" />
             </Link>
             </div>
 
-            {/* Nav */}
+            {/* CENTER: nav + lang */}
             <div className="header-center">
-            {smallLayout ? (
+            {isMobile ? (
                 <div className="header-burger">
                 <button
                     type="button"
                     className="header-burger-btn"
-                    onClick={toggleMenu}
+                    onClick={() => setMenuOpen((v) => !v)}
                     aria-label="Open menu"
                     aria-expanded={menuOpen}
                 >
-                    <img src={burgerIcon} alt="" className="header-burger-icon" />
+                    <img className="header-burger-icon" src={menuIcon} alt="Menu" />
                 </button>
 
                 {menuOpen && (
                     <div className="header-dropdown">
-                    <Nav items={items} variant="mobile" />
+                    <ul className="nav-mobile">
+                        {navItems.map((item) => (
+                        <li key={item.to} className="nav-mobile-item">
+                            <Link
+                            to={item.to}
+                            className={`nav-mobile-link ${
+                                isActive(item.to) ? "is-active" : ""
+                            }`}
+                            >
+                            {item.label}
+                            </Link>
+                        </li>
+                        ))}
+                    </ul>
+
                     <div className="header-dropdown-lang">
-                        <LanguageToggle />
+                        <LanguageToogle />
                     </div>
                     </div>
                 )}
                 </div>
             ) : (
                 <div className="header-nav-row">
-                <Nav items={items} variant="desktop" />
-                <div className="header-lang">
-                    <LanguageToggle />
-                </div>
+                <ul className="nav-desktop">
+                    {navItems.map((item) => (
+                    <li key={item.to}>
+                        <Link
+                        to={item.to}
+                        className={`nav-desktop-link ${
+                            isActive(item.to) ? "is-active" : ""
+                        }`}
+                        >
+                        {item.label}
+                        </Link>
+                    </li>
+                    ))}
+                </ul>
+
+                <LanguageToogle />
                 </div>
             )}
             </div>
 
-            {/* User icon (external login) */}
+            {/* RIGHT: user icon redirect */}
             <div className="header-right">
-            <UserMenu />
+            <a
+                href="https://investors.heroics-capital.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="user-menu-btn"
+                aria-label="Investor portal"
+            >
+                <img className="user-menu-icon" src={userIcon} alt="User" />
+            </a>
             </div>
         </div>
         </header>
