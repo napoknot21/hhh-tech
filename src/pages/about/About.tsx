@@ -10,4 +10,5 @@ export default function About() {
             <p>{t("pages.about.desc")}</p>
         </main>
     );
+    
 }

@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import "./header.css";
-import LanguageToogle from "./LanguageToggle";
+import LanguageToggle from "./LanguageToggle";
 
 import logo from "../../assets/images/common/heroics-logo-rgb.png";
 import menuIcon from "../../assets/images/common/menuicon.png";
@@ -83,7 +83,7 @@ export default function Header() {
                     </ul>
 
                     <div className="header-dropdown-lang">
-                        <LanguageToogle />
+                        <LanguageToggle />
                     </div>
                     </div>
                 )}
@@ -105,7 +105,7 @@ export default function Header() {
                     ))}
                 </ul>
 
-                <LanguageToogle />
+                <LanguageToggle />
                 </div>
             )}
             </div>

@@ -12,7 +12,7 @@ const LANGS : { code: Lang; label: string }[] = [
 
 const STORAGE_KEY = "heroics_lang";
 
-export default function LanguageToogle() {
+export default function LanguageToggle() {
     
     const [current, setCurrent] = useState<Lang>(
         (i18n.language?.slice(0, 2) as Lang) || "en"
