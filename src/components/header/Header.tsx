@@ -6,7 +6,7 @@ import "./header.css";
 import LanguageToggle from "./LanguageToggle";
 
 import logo from "../../assets/images/common/heroics-logo-rgb.png";
-import menuIcon from "../../assets/images/common/menuicon.png";
+import menuIcon from "../../assets/images/common/ny.png";
 import userIcon from "../../assets/images/common/user.png";
 
 type NavItem = { label: string; to: string };
