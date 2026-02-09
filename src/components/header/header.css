@@ -53,6 +53,30 @@
 .nav-desktop-link:hover { border-bottom-color: #0b2a6f; }
 .nav-desktop-link.is-active { color: #2563eb; font-weight: 700; }
 
+.client-toggle {
+  display: inline-flex;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 6px;
+  overflow: hidden;
+  height: 34px;
+}
+
+.client-btn {
+  padding: 6px 12px;
+  background: white;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.client-btn.is-active {
+  background: #2563eb;
+  color: white;
+  font-weight: 700;
+}
+
+
 .header-burger { position: relative; }
 .header-burger-btn {
   background: transparent;
